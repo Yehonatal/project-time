@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./style/getdate.css";
 import PropTypes from "prop-types";
 
-const GetDate = ({ onCreateCountDown }) => {
+const GetDate = ({ onCreateCountDown, onCancelCreate }) => {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [type, setType] = useState("");
@@ -24,6 +24,9 @@ const GetDate = ({ onCreateCountDown }) => {
         setDescription("");
         setType("");
         setTargetTime("");
+    };
+    const handleCancel = () => {
+        onCancelCreate(false);
     };
 
     return (
@@ -61,7 +64,10 @@ const GetDate = ({ onCreateCountDown }) => {
                         onChange={(e) => setTargetTime(e.target.value)}
                     />
                 </label>
-                <button type="submit">Create Countdown</button>
+                <div className="btns">
+                    <button type="submit">Create Countdown</button>
+                    <button onClick={handleCancel}>Cancel</button>
+                </div>
             </form>
         </div>
     );
@@ -69,6 +75,7 @@ const GetDate = ({ onCreateCountDown }) => {
 
 GetDate.propTypes = {
     onCreateCountDown: PropTypes.func.isRequired,
+    onCancelCreate: PropTypes.func.isRequired,
 };
 
 export default GetDate;

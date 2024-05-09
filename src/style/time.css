@@ -40,8 +40,9 @@
     left: 50px;
     p {
         padding: 5px 10px;
-        border: 2px solid rgba(255, 255, 255, 0.171);
-        background-color: rgba(207, 5, 5, 0.068);
+        border: 1px solid rgba(255, 255, 255, 0.171);
+        background-color: #a7abff;
+
         margin: 0;
         border-radius: 5px;
         font-weight: bold;

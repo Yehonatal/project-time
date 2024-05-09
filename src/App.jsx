@@ -22,7 +22,12 @@ function App() {
             <button onClick={() => setShowForm(true)}>Create New</button>
             <br />
             <br />
-            {showForm && <GetDate onCreateCountDown={handleCreateCountDown} />}
+            {showForm && (
+                <GetDate
+                    onCreateCountDown={handleCreateCountDown}
+                    onCancelCreate={setShowForm}
+                />
+            )}
             {countdowns.map((countdown, index) => (
                 <CountDown key={index} countdown={countdown} />
             ))}
