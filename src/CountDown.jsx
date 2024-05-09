@@ -50,8 +50,11 @@ function CountDown({ countdown }) {
         <div className="main-card">
             <div className="card-info">
                 <p>{countdown.title}</p>
+                <hr />
                 <p>{countdown.description}</p>
+                <hr />
                 <p>{countdown.type}</p>
+                <hr />
             </div>
             <div className="container">
                 <div className="mini-card">

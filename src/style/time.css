@@ -4,6 +4,8 @@
     padding: 1em;
     font-size: 3em;
     justify-content: center;
+    margin-bottom: 1em;
+    user-select: none;
 }
 
 .main-card {
@@ -37,12 +39,12 @@
     gap: 20px;
     flex-direction: row;
     position: absolute;
-    top: 30px;
-    left: 100px;
+    bottom: 30px;
+    left: 125px;
     p {
         padding: 5px 10px;
         border: 1px solid rgba(255, 255, 255, 0.171);
-        background-color: #a7abff;
+        background-color: #a7abff56;
 
         margin: 0;
         border-radius: 5px;
