@@ -2,9 +2,8 @@ import { useState, useEffect } from "react";
 import "./style/time.css";
 import "./App.css";
 import PropTypes from "prop-types";
-
-function CountDown({ targetTime }) {
-    const [countdown, setCountdown] = useState({
+function CountDown({ countdown }) {
+    const [countdownState, setCountdownState] = useState({
         days: 0,
         hours: 0,
         minutes: 0,
@@ -12,13 +11,14 @@ function CountDown({ targetTime }) {
     });
 
     useEffect(() => {
+        const targetTime = new Date(countdown.targetTime);
         const interval = setInterval(() => {
             const now = new Date().getTime();
             const difference = targetTime - now;
 
             if (difference <= 0) {
                 clearInterval(interval);
-                setCountdown({
+                setCountdownState({
                     days: 0,
                     hours: 0,
                     minutes: 0,
@@ -34,7 +34,7 @@ function CountDown({ targetTime }) {
                 );
                 const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-                setCountdown({
+                setCountdownState({
                     days,
                     hours,
                     minutes,
@@ -44,34 +44,51 @@ function CountDown({ targetTime }) {
         }, 1000);
 
         return () => clearInterval(interval);
-    }, [targetTime]);
+    }, [countdown]);
 
     return (
-        <div className="container">
-            <div className="mini-card">
-                <h1 className="day">{countdown.days}</h1>
-                <p>DAY</p>
+        <div className="main-card">
+            <div className="card-info">
+                <p>{countdown.title}</p>
+                <p>{countdown.description}</p>
+                <p>{countdown.type}</p>
             </div>
-            <span className="dot">.</span>
-            <div className="mini-card">
-                <h1 className="hour">{countdown.hours}</h1>
-                <p>HOUR</p>
-            </div>
-            <span className="dot">.</span>
-            <div className="mini-card">
-                <h1 className="minute">{countdown.minutes}</h1>
-                <p>MINUTE</p>
-            </div>
-            <span className="dot">.</span>
-            <div className="mini-card">
-                <h1 className="minute">{countdown.seconds}</h1>
-                <p>SECOND</p>
+            <div className="container">
+                <div className="mini-card">
+                    <h1 className="day">{countdownState.days.toString()}</h1>
+                    <p>DAY</p>
+                </div>
+                <span className="dot">.</span>
+                <div className="mini-card">
+                    <h1 className="hour">{countdownState.hours.toString()}</h1>
+                    <p>HOUR</p>
+                </div>
+                <span className="dot">.</span>
+                <div className="mini-card">
+                    <h1 className="minute">
+                        {countdownState.minutes.toString()}
+                    </h1>
+                    <p>MINUTE</p>
+                </div>
+                <span className="dot">.</span>
+                <div className="mini-card">
+                    <h1 className="minute">
+                        {countdownState.seconds.toString()}
+                    </h1>
+                    <p>SECOND</p>
+                </div>
             </div>
         </div>
     );
 }
+
 CountDown.propTypes = {
-    targetTime: PropTypes.instanceOf(Date).isRequired,
+    countdown: PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        description: PropTypes.string.isRequired,
+        type: PropTypes.string.isRequired,
+        targetTime: PropTypes.instanceOf(Date).isRequired,
+    }).isRequired,
 };
 
 export default CountDown;

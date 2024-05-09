@@ -1,36 +1,74 @@
 import { useState } from "react";
+import "./style/getdate.css";
 import PropTypes from "prop-types";
 
-const GetDate = ({ onSetTargetTime }) => {
+const GetDate = ({ onCreateCountDown }) => {
+    const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
+    const [type, setType] = useState("");
     const [targetTime, setTargetTime] = useState("");
-
-    const handleChange = (event) => {
-        setTargetTime(event.target.value);
-    };
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const parsedTime = new Date(targetTime);
-        onSetTargetTime(parsedTime);
+        // Create a new countdown object
+        const newCountdown = {
+            title,
+            description,
+            type,
+            targetTime: new Date(targetTime),
+        };
+        // Pass it back to the parent component
+        onCreateCountDown(newCountdown);
+        // Clear the form fields
+        setTitle("");
+        setDescription("");
+        setType("");
+        setTargetTime("");
     };
 
     return (
         <div>
             <form onSubmit={handleSubmit}>
                 <label>
-                    Enter target time:
+                    Title:
+                    <input
+                        type="text"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                    />
+                </label>
+                <label>
+                    Description:
+                    <input
+                        type="text"
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                    />
+                </label>
+                <label>
+                    Type:
+                    <input
+                        type="text"
+                        value={type}
+                        onChange={(e) => setType(e.target.value)}
+                    />
+                </label>
+                <label>
+                    Target Time:
                     <input
                         type="datetime-local"
                         value={targetTime}
-                        onChange={handleChange}
+                        onChange={(e) => setTargetTime(e.target.value)}
                     />
                 </label>
-                <button type="submit">Set Target Time</button>
+                <button type="submit">Create Countdown</button>
             </form>
         </div>
     );
 };
+
 GetDate.propTypes = {
-    onSetTargetTime: PropTypes.func.isRequired,
+    onCreateCountDown: PropTypes.func.isRequired,
 };
+
 export default GetDate;

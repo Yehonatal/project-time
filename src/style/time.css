@@ -6,6 +6,11 @@
     font-size: 3em;
 }
 
+.main-card {
+    position: relative;
+    width: 950px;
+}
+
 .dot {
     font-size: 3em;
     margin-inline: 10px;
@@ -22,6 +27,24 @@
     p {
         margin-top: 0;
         font-size: 15px;
+        font-weight: bold;
+    }
+}
+
+.card-info {
+    font-size: 15px;
+    display: flex;
+    gap: 20px;
+    flex-direction: row;
+    position: absolute;
+    top: 30px;
+    left: 50px;
+    p {
+        padding: 5px 10px;
+        border: 2px solid rgba(255, 255, 255, 0.171);
+        background-color: rgba(207, 5, 5, 0.212);
+        margin: 0;
+        border-radius: 5px;
         font-weight: bold;
     }
 }

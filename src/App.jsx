@@ -1,22 +1,31 @@
-// App.jsx
 import { useState } from "react";
 import CountDown from "./CountDown";
 import GetDate from "./GetDate";
 
 function App() {
-    const [targetTime, setTargetTime] = useState(null);
+    const [countdowns, setCountdowns] = useState(() => {
+        const storedCountdowns = localStorage.getItem("countdowns");
+        return storedCountdowns ? JSON.parse(storedCountdowns) : [];
+    });
+    const [showForm, setShowForm] = useState(false);
 
-    const handleSetTargetTime = (time) => {
-        setTargetTime(time);
+    const handleCreateCountDown = (newCountdown) => {
+        const updatedCountdowns = [...countdowns, newCountdown];
+        localStorage.setItem("countdowns", JSON.stringify(updatedCountdowns));
+        setCountdowns(updatedCountdowns);
+        setShowForm(false);
     };
 
     return (
         <div>
-            {targetTime ? (
-                <CountDown targetTime={targetTime} />
-            ) : (
-                <GetDate onSetTargetTime={handleSetTargetTime} />
-            )}
+            <h2>Do you want to track another deadline ?</h2>
+            <button onClick={() => setShowForm(true)}>Create New</button>
+            <br />
+            <br />
+            {showForm && <GetDate onCreateCountDown={handleCreateCountDown} />}
+            {countdowns.map((countdown, index) => (
+                <CountDown key={index} countdown={countdown} />
+            ))}
         </div>
     );
 }
