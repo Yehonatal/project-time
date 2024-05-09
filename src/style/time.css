@@ -32,7 +32,7 @@
 }
 
 .card-info {
-    font-size: 15px;
+    font-size: 0.75em;
     display: flex;
     gap: 20px;
     flex-direction: row;
