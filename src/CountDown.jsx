@@ -52,11 +52,11 @@ function CountDown({ countdown }) {
     return (
         <div className="main-card">
             <div className={`card-info ${danger ? "danger" : ""}`}>
-                <p>{countdown.title}</p>
+                <p className="info">{countdown.title}</p>
                 <hr />
-                <p>{countdown.description}</p>
+                <p className="info">{countdown.description}</p>
                 <hr />
-                <p>{countdown.type}</p>
+                <p className="info">{countdown.type}</p>
                 <hr />
             </div>
             <div className={`container ${danger ? "danger" : ""}`}>

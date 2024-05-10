@@ -53,5 +53,10 @@
 }
 
 .danger {
-    color: red;
+    color: #ff4747;
+
+    .info {
+        border: 2px solid #ff474765;
+        background-color: rgba(255, 99, 71, 0.164);
+    }
 }
