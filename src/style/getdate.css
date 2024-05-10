@@ -1,6 +1,5 @@
 form {
     margin-inline: auto;
-    max-width: 350px;
     border-radius: 8px;
     border: 2px solid transparent;
     background-color: #7e84f8;
@@ -14,7 +13,6 @@ form {
     display: flex;
     flex-direction: column;
     padding: 1em;
-    width: 100%;
 
     button {
         font-size: 0.9em !important;
@@ -53,5 +51,10 @@ form:focus-visible {
     gap: 15px;
     button:last-child {
         flex: 1;
+    }
+}
+@media (min-width: 500px) {
+    form {
+        max-width: 350px;
     }
 }
