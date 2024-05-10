@@ -10,7 +10,18 @@ function CountDown({ countdown }) {
         seconds: 0,
     });
     const [danger, setDanger] = useState(false);
-
+    const daysOfWeek = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+    ];
+    const targetDay = daysOfWeek[new Date(countdown.targetTime).getDay()];
+    const targetDate = new Date(countdown.targetTime);
+    const targetTime = targetDate.toLocaleTimeString();
     useEffect(() => {
         const targetTime = new Date(countdown.targetTime);
         const interval = setInterval(() => {
@@ -57,6 +68,8 @@ function CountDown({ countdown }) {
                 <p className="info">{countdown.description}</p>
                 <hr />
                 <p className="info">{countdown.type}</p>
+                <hr />
+                <p className="info">{`${targetDay} : ${targetTime}`}</p>
                 <hr />
             </div>
             <div className={`container ${danger ? "danger" : ""}`}>
