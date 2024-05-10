@@ -9,6 +9,7 @@ function CountDown({ countdown }) {
         minutes: 0,
         seconds: 0,
     });
+    const [danger, setDanger] = useState(false);
 
     useEffect(() => {
         const targetTime = new Date(countdown.targetTime);
@@ -33,7 +34,9 @@ function CountDown({ countdown }) {
                     (difference % (1000 * 60 * 60)) / (1000 * 60)
                 );
                 const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
+                if (days == 0) {
+                    setDanger(true);
+                }
                 setCountdownState({
                     days,
                     hours,
@@ -48,7 +51,7 @@ function CountDown({ countdown }) {
 
     return (
         <div className="main-card">
-            <div className="card-info">
+            <div className={`card-info ${danger ? "danger" : ""}`}>
                 <p>{countdown.title}</p>
                 <hr />
                 <p>{countdown.description}</p>
@@ -56,7 +59,7 @@ function CountDown({ countdown }) {
                 <p>{countdown.type}</p>
                 <hr />
             </div>
-            <div className="container">
+            <div className={`container ${danger ? "danger" : ""}`}>
                 <div className="mini-card">
                     <h1 className="day">{countdownState.days.toString()}</h1>
                     <p>DAY</p>
