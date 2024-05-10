@@ -62,39 +62,45 @@ function CountDown({ countdown }) {
 
     return (
         <div className="main-card">
-            <div className={`card-info ${danger ? "danger" : ""}`}>
-                <p className="info">{countdown.title}</p>
-                <hr />
-                <p className="info">{countdown.description}</p>
-                <hr />
-                <p className="info">{countdown.type}</p>
-                <hr />
-                <p className="info">{`${targetDay} : ${targetTime}`}</p>
-                <hr />
-            </div>
-            <div className={`container ${danger ? "danger" : ""}`}>
-                <div className="mini-card">
-                    <h1 className="day">{countdownState.days.toString()}</h1>
-                    <p>DAY</p>
+            <div className="card">
+                <div className={`container ${danger ? "danger" : ""}`}>
+                    <div className="mini-card">
+                        <h1 className="day">
+                            {countdownState.days.toString()}
+                        </h1>
+                        <p>DAY</p>
+                    </div>
+                    <span className="dot">.</span>
+                    <div className="mini-card">
+                        <h1 className="hour">
+                            {countdownState.hours.toString()}
+                        </h1>
+                        <p>HOUR</p>
+                    </div>
+                    <span className="dot">.</span>
+                    <div className="mini-card">
+                        <h1 className="minute">
+                            {countdownState.minutes.toString()}
+                        </h1>
+                        <p>MINUTE</p>
+                    </div>
+                    <span className="dot">.</span>
+                    <div className="mini-card">
+                        <h1 className="minute">
+                            {countdownState.seconds.toString()}
+                        </h1>
+                        <p>SECOND</p>
+                    </div>
                 </div>
-                <span className="dot">.</span>
-                <div className="mini-card">
-                    <h1 className="hour">{countdownState.hours.toString()}</h1>
-                    <p>HOUR</p>
-                </div>
-                <span className="dot">.</span>
-                <div className="mini-card">
-                    <h1 className="minute">
-                        {countdownState.minutes.toString()}
-                    </h1>
-                    <p>MINUTE</p>
-                </div>
-                <span className="dot">.</span>
-                <div className="mini-card">
-                    <h1 className="minute">
-                        {countdownState.seconds.toString()}
-                    </h1>
-                    <p>SECOND</p>
+                <div className={`card-info ${danger ? "danger" : ""}`}>
+                    <p className="info">{countdown.title}</p>
+                    <hr />
+                    <p className="info">{countdown.description}</p>
+                    <hr />
+                    <p className="info">{countdown.type}</p>
+                    <hr />
+                    <p className="info">{`${targetDay} : ${targetTime}`}</p>
+                    <hr />
                 </div>
             </div>
         </div>
